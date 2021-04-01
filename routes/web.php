@@ -43,6 +43,7 @@ Route::get('/users/{id}', function ($id) {
     return "This is ". $id;
 });
 
+
 Route::resource('posts', PostsController::class);
 
 
