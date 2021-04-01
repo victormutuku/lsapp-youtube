@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',[PagesController::class, 'index']);
+
+// Route::get('/', function () {
+    // return view('welcome');
+// });
+
+Route::get('/hello', function () {
+    //return view('welcome');
+    return "<h1>Hello Victor!!!!🤩🤩🤩🤩</h1>";
 });
+
+Route::get('/about',[PagesController::class, 'about']);
+
+// Route::get('/about', function () {
+//     return view('pages.about');
+// });
+
+Route::get('/services',[PagesController::class, 'services']);
+
+// Route::get('/services', function () {
+//     return view('pages.services');
+// });
+
+Route::get('/users/{id}', function ($id) {
+    return "This is ". $id;
+});
+
+Route::resource('posts', PostsController::class);
+
+
+
+
+Auth::routes();
+
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
+
+
